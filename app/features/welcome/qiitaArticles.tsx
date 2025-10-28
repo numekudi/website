@@ -1,3 +1,11 @@
+import { DateClientOnly } from "./DateClientOnly";
+
+interface QiitaArticle {
+  title: string;
+  link: string;
+  published: string;
+  id: string;
+}
 interface QiitaArticle {
   title: string;
   link: string;
@@ -10,7 +18,7 @@ interface Props {
   qiitaError?: string;
 }
 
-function formatDate(dateStr: string): string {
+function formatDate(dateStr: string) {
   const date = new Date(dateStr);
   return date.toLocaleDateString("ja-JP", {
     year: "numeric",
@@ -57,9 +65,7 @@ export default function QiitaArticles({ articles, qiitaError }: Props) {
             >
               {article.title}
             </a>
-            <div className="text-xs opacity-60 mt-1">
-              {formatDate(article.published)}
-            </div>
+            <DateClientOnly dateStr={article.published} />
           </div>
         ))}
       </div>

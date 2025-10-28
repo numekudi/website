@@ -32,15 +32,6 @@ function getContributionClasses(level: number): string {
   }
 }
 
-function formatDate(dateStr: string): string {
-  const date = new Date(dateStr);
-  return date.toLocaleDateString("ja-JP", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-}
-
 export default function GithubGrass({
   githubContributions,
   githubError,
@@ -111,7 +102,6 @@ export default function GithubGrass({
                   <div
                     key={`${weekIndex}-${dayIndex}`}
                     className={getContributionClasses(level)}
-                    title={`${formatDate(day.date)}: ${day.contributionCount} contributions`}
                   />
                 );
               })}
@@ -128,7 +118,7 @@ export default function GithubGrass({
               key={level}
               className={getContributionClasses(level).replace(
                 "hover:scale-110",
-                "",
+                ""
               )}
             />
           ))}
