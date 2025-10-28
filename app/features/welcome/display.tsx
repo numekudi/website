@@ -1,9 +1,6 @@
 export default function Display() {
-  // 最初のフレーム画像のパス
-  const posterUrl =
-    "https://pub-7a979731de0f4f1ca0b71c909db24ff0.r2.dev/videoframe_0.png";
-  const videoUrl =
-    "https://pub-7a979731de0f4f1ca0b71c909db24ff0.r2.dev/vid.mp4";
+  const posterUrl = "https://cdn.primitive-ojisan.com/videoframe_0.png";
+  const videoUrl = "https://cdn.primitive-ojisan.com/vid.mp4";
 
   return (
     <div className="w-full overflow-clip">
