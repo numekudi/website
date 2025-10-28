@@ -14,18 +14,7 @@ import { useRouteLoaderData } from "react-router";
 import { useLoaderData } from "react-router";
 import { ColorSchemeProvider } from "./hooks/useColorScheme";
 
-export const links: Route.LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
-  },
-  {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
-  },
-];
+export const links: Route.LinksFunction = () => [];
 export const loader = ({ request }: Route.LoaderArgs) => {
   const cookie = request.headers.get("Cookie");
   const match = cookie?.match(/color-scheme=(light|dark|system)/);
@@ -44,7 +33,7 @@ export function ColorSchemeScript() {
         if (media.matches) document.documentElement.classList.add("dark");
       }
     `,
-    [],
+    []
   );
 
   if (typeof document !== "undefined") {
