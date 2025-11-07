@@ -33,7 +33,7 @@ export function ColorSchemeScript() {
         if (media.matches) document.documentElement.classList.add("dark");
       }
     `,
-    []
+    [],
   );
 
   if (typeof document !== "undefined") {
@@ -80,6 +80,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "numekudi",
+          })}
+        </script>
       </head>
       <body className="bg-white text-black dark:bg-zinc-900 dark:text-white">
         {children}
