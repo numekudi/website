@@ -1,6 +1,6 @@
 export default function Display() {
-  const posterUrl = "https://cdn.primitive-ojisan.com/videoframe_0.png";
-  const videoUrl = "https://cdn.primitive-ojisan.com/vid.mp4";
+  const posterUrl = "https://cdn.primitive-ojisan.com/about/videoframe_0.png";
+  const videoUrl = "https://cdn.primitive-ojisan.com/about/vid.mp4";
 
   return (
     <div className="w-full overflow-clip">

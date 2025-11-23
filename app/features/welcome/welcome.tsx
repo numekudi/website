@@ -22,6 +22,8 @@ export function Welcome({
   children?: ReactNode;
 }) {
   const githubAvatarUrl = `https://github.com/numekudi.png`;
+  const qiitaAvatarUrl =
+    "https://cdn.primitive-ojisan.com/about/qiita_icon.png";
   return (
     <main className="flex flex-col">
       <div className="relative">
@@ -33,7 +35,6 @@ export function Welcome({
         </div>
       </div>
       <div className="px-2 py-12 space-y-12">
-        <h2 className="text-2xl font-bold mb-2">I’m numekudi.</h2>
         <p className="text-base mt-2">
           A Web service Developer with a Side of AI & Mobile.
         </p>
@@ -46,7 +47,7 @@ export function Welcome({
         </div>
         {children}
         <div>
-          <QiitaBadge avatarUrl={githubAvatarUrl} />
+          <QiitaBadge avatarUrl={qiitaAvatarUrl} />
           <QiitaArticles articles={qiitaArticles} qiitaError={qiitaError} />
         </div>
         <Career />
