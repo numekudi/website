@@ -33,6 +33,6 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: npm run deploy
         env:
-          VITE_DISCORD_USER_ID: 1154812151962275932
+          VITE_DISCORD_USER_ID: "1154812151962275932"
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
