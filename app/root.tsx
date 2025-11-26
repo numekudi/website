@@ -4,7 +4,6 @@ import {
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration,
 } from "react-router";
 
 import type { Route } from "./+types/root";
@@ -90,7 +89,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body className="bg-white text-black dark:bg-zinc-900 dark:text-white">
         {children}
-        <ScrollRestoration />
         <Scripts />
       </body>
     </html>

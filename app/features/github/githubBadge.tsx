@@ -1,4 +1,4 @@
-import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 type Props = {
   avatarUrl?: string;
@@ -13,18 +13,17 @@ export default function GithubBadge({ avatarUrl }: Props) {
             className="flex items-center gap-3 hover:underline w-fit"
             target="_blank"
           >
-            <FaGithub className="text-black dark:text-white" size={42} />
+            <img
+              src={avatarUrl}
+              alt="avatar"
+              className="rounded-full ring-1 ring-white/20 right-0"
+              height={42}
+              width={42}
+            />
             <span className="text-xl">GitHub</span>
             <FaExternalLinkAlt />
           </a>
         </div>
-        <img
-          src={avatarUrl}
-          alt="avatar"
-          className="rounded-full ring-1 ring-white/20 right-0"
-          height={42}
-          width={42}
-        />
       </div>
     </div>
   );

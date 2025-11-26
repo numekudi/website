@@ -165,7 +165,7 @@ export default function DiscordActivities({
             <div className="text-sm text-gray-300">NA</div>
           </div>
           <div className="flex-1 min-w-0">
-            <div className="text-sm text-gray-400">No Discord activities</div>
+            <div className="text-sm text-gray-400">No Discord activities.</div>
           </div>
         </div>
       </div>

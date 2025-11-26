@@ -15,22 +15,15 @@ export default function QiitaBadge({ avatarUrl }: Props) {
             rel="noopener noreferrer"
           >
             <img
-              src="/qiita-icon.png"
-              alt="Qiita"
-              className="w-[42px] h-[42px]"
+              src={avatarUrl}
+              alt="avatar"
+              className="rounded-full ring-1 ring-white/20 right-0"
+              height={42}
+              width={42}
             />
             <span className="text-xl">Qiita</span>
             <FaExternalLinkAlt />
           </a>
-        </div>
-        <div className="relative">
-          <img
-            src={avatarUrl}
-            alt="avatar"
-            className="rounded-full ring-1 ring-white/20 right-0"
-            height={42}
-            width={42}
-          />
         </div>
       </div>
     </div>

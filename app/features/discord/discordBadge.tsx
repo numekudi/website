@@ -56,26 +56,19 @@ export default function DiscordBadge({
             className="flex items-center gap-3 hover:underline w-fit"
             target="_blank"
           >
-            <FaDiscord
-              className="bg-[#5865F2] text-white rounded-full p-1"
-              size={42}
-            />
+            <div className="relative">
+              <img
+                src={avatarUrl}
+                alt={username}
+                className="w-[42px] h-[42px] rounded-full ring-1 ring-white/20"
+              />
+              <span
+                className={`absolute bottom-0 right-0 w-3 h-3 rounded-full ${statusColor} ring-1 ring-white/20 border-2 border-white`}
+              />
+            </div>
             <span className="text-xl">Discord</span>
             <FaExternalLinkAlt />
           </a>
-        </div>
-        <div className="relative">
-          <img
-            src={avatarUrl}
-            alt="avatar"
-            className="rounded-full ring-1 ring-white/20 right-0"
-            height={42}
-            width={42}
-          />
-          <span
-            aria-hidden="true"
-            className={`absolute bottom-0 right-0 w-3 h-3 rounded-full ${statusColor} ring-1 ring-white/20 border-2 border-white`}
-          />
         </div>
       </div>
     </div>
