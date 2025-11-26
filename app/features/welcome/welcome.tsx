@@ -23,7 +23,7 @@ export function Welcome({
 }) {
   const githubAvatarUrl = `https://github.com/numekudi.png`;
   const qiitaAvatarUrl =
-    "https://cdn.primitive-ojisan.com/about/qiita_icon.png";
+    "https://cdn.primitive-ojisan.com/about/qiita_icon.webp";
   return (
     <main className="flex flex-col">
       <div className="relative">
