@@ -1,9 +1,9 @@
 import Display from "./display";
-import GithubBadge from "./githubBadge";
+import GithubBadge from "../github/githubBadge";
 import OverlayText from "./overlayText";
-import GithubGrass from "./githubGrass";
-import QiitaBadge from "./qiitaBadge";
-import QiitaArticles from "./qiitaArticles";
+import GithubGrass from "../github/githubGrass";
+import QiitaBadge from "../qiita/qiitaBadge";
+import QiitaArticles from "../qiita/qiitaArticles";
 import Career from "./career";
 import { type ReactNode } from "react";
 import type { GitHubContributions, QiitaArticle } from "../../types";
