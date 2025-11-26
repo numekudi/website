@@ -145,7 +145,7 @@ export default function DiscordActivities({
   if (isLoading) {
     return (
       <div className="mt-4 space-y-3">
-        <div className="h-[120px] flex items-center gap-4 p-4 border rounded-md bg-white/5 animate-pulse">
+        <div className="h-[120px] flex items-center gap-4 p-4 rounded-md bg-white/5 animate-pulse">
           <div className="flex-shrink-0 w-12 h-12 rounded bg-gray-800"></div>
           <div className="flex-1 min-w-0">
             <div className="h-4 bg-gray-400 rounded w-3/4 mb-2"></div>
@@ -160,7 +160,7 @@ export default function DiscordActivities({
   if (!activities || activities.length === 0) {
     return (
       <div className="mt-4 space-y-3">
-        <div className="h-[120px] flex items-center gap-4 p-4 border rounded-md bg-white/5">
+        <div className="h-[120px] flex items-center gap-4 p-4 rounded-md bg-white/5">
           <div className="flex-shrink-0 w-12 h-12 rounded overflow-hidden bg-gray-800 flex items-center justify-center">
             <div className="text-sm text-gray-300">NA</div>
           </div>
@@ -192,7 +192,7 @@ export default function DiscordActivities({
         return (
           <div
             key={i}
-            className="h-[120px] flex items-center gap-4 p-4 border rounded-md bg-white/5"
+            className="h-[120px] flex items-center gap-4 p-4 rounded-md bg-white/5"
             role="group"
             aria-label={`Discord activity ${a.name}`}
           >
