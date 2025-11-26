@@ -32,9 +32,9 @@ export default function QiitaArticles({ articles, qiitaError }: Props) {
     return (
       <aside className="w-full p-4 text-sm">
         <h3 className="font-semibold mb-4">Recent Articles</h3>
-        <div className="text-red-400 text-xs">
+        <div className="text-red-600 text-xs">
           <div className="font-semibold mb-2">エラーが発生しました:</div>
-          <div className="bg-red-900/20 p-2 rounded border-l-2 border-red-500">
+          <div className=" p-2 rounded border-l-2 border-red-500">
             {qiitaError}
           </div>
         </div>

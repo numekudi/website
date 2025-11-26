@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <div className="flex px-2 justify-between items-center w-full bg-linear-to-t from-white/0 to-white dark:from-zinc-900/0 dark:to-zinc-900">
       <div className="w-24">
-        <a href="/llms.txt">
+        <a href="/llms.txt" aria-label="llms.txt">
           <FaMarkdown />
         </a>
       </div>
@@ -22,6 +22,7 @@ export default function Header() {
           className={
             "bg-gray-700 relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 hover:cursor-pointer"
           }
+          aria-label="Toggle dark mode"
         >
           <span
             className={
