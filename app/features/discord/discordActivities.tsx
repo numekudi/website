@@ -104,20 +104,14 @@ function ElapsedTime({
   if (end) {
     const remainingMs = end.getTime() - now.getTime();
     if (remainingMs <= 0) {
-      return <div className="text-xs text-gray-400">Ended</div>;
+      return <div className="text-xs">Ended</div>;
     }
     return (
-      <div className="text-xs text-gray-400">
-        Remaining: {formatDuration(remainingMs)}
-      </div>
+      <div className="text-xs">Remaining: {formatDuration(remainingMs)}</div>
     );
   } else {
     const elapsedMs = now.getTime() - start.getTime();
-    return (
-      <div className="text-xs text-gray-400">
-        Elapsed: {formatDuration(elapsedMs)}
-      </div>
-    );
+    return <div className="text-xs">Elapsed: {formatDuration(elapsedMs)}</div>;
   }
 }
 
@@ -213,27 +207,21 @@ export default function DiscordActivities({
               <div className="flex items-baseline justify-between gap-4">
                 <div className="truncate">
                   <div className="font-medium truncate">{a.name}</div>
-                  <div className="text-xs text-gray-400 truncate">
-                    {activityType(a.type)}
-                  </div>
+                  <div className="text-xs truncate">{activityType(a.type)}</div>
                 </div>
-                <div className="text-xs text-gray-400 text-right">
+                <div className="text-xs text-right">
                   {a.assets?.large_text ?? a.assets?.small_text}
                 </div>
               </div>
 
               {a.details && (
-                <div className="text-sm text-gray-200 mt-1 truncate">
-                  {a.details}
-                </div>
+                <div className="text-sm mt-1 truncate">{a.details}</div>
               )}
               {a.state && (
-                <div className="text-sm text-gray-400 mt-1 truncate">
-                  {a.state}
-                </div>
+                <div className="text-sm mt-1 truncate">{a.state}</div>
               )}
 
-              <div className="text-xs text-gray-400 mt-2 flex flex-wrap gap-4">
+              <div className="text-xs mt-2 flex flex-wrap gap-4">
                 {started && <div>Started: {formatDateUTC(started)}</div>}
                 {ended && <div>Ends: {formatDateUTC(ended)}</div>}
                 {started && <ElapsedTime start={started} end={ended} />}
