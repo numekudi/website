@@ -77,7 +77,7 @@ export default function GithubGrass({
       <div className="mb-4">
         <span className="">
           {" "}
-          <span className="text-green-400 font-semibold">
+          <span className="text-green-600 dark:text-green-400 font-semibold">
             {totalContributions}
           </span>{" "}
           contributions in the last year
