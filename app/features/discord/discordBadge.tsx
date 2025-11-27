@@ -58,6 +58,8 @@ export default function DiscordBadge({
           >
             <div className="relative">
               <img
+                referrerPolicy="no-referrer"
+                crossOrigin="anonymous"
                 src={avatarUrl}
                 alt={username}
                 className="w-[42px] h-[42px] rounded-full ring-1 ring-white/20"
