@@ -17,6 +17,7 @@ export default function QiitaBadge({ avatarUrl }: Props) {
             <picture>
               <img
                 srcSet={avatarUrl}
+                alt="qiita icon"
                 className="rounded-full ring-1 ring-white/20 right-0"
                 height={42}
                 width={42}
