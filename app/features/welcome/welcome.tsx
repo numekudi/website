@@ -34,7 +34,7 @@ export function Welcome({
           </div>
         </div>
       </div>
-      <div className="px-2 py-12 space-y-12">
+      <div className="px-2 pt-12 space-y-12">
         <p className="text-base mt-2">
           A Web service Developer with a Side of AI & Mobile.
         </p>
