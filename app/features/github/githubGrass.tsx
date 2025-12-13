@@ -49,11 +49,9 @@ export default function GithubGrass({
     return (
       <aside className="w-full p-4 text-sm">
         <h3 className="font-semibold mb-4 ">GitHub Activity</h3>
-        <div className="text-red-600 text-xs">
+        <div className="text-xs">
           <div className="font-semibold mb-2">エラーが発生しました:</div>
-          <div className="p-2 rounded border-l-2 border-red-500">
-            {githubError}
-          </div>
+          <div className="p-2 rounded border-l-2">{githubError}</div>
         </div>
       </aside>
     );
@@ -116,7 +114,7 @@ export default function GithubGrass({
               key={level}
               className={getContributionClasses(level).replace(
                 "hover:scale-110",
-                "",
+                ""
               )}
             />
           ))}

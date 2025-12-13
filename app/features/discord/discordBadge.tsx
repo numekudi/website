@@ -35,12 +35,8 @@ export default function DiscordBadge({
                 size={42}
               />
               <span className="text-xl">Discord</span>
-              <div className="w-4 h-4 bg-gray-400 animate-pulse rounded"></div>
+              <div className="w-4 h-4 bg-gray-400 dark:bg-gray-600 animate-pulse rounded"></div>
             </div>
-          </div>
-          <div className="relative">
-            <div className="w-[42px] h-[42px] bg-gray-400 animate-pulse rounded-full ring-1 ring-white/20"></div>
-            <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-gray-400 ring-1 ring-white/20 border-2 border-white animate-pulse" />
           </div>
         </div>
       </div>
