@@ -215,15 +215,13 @@ export default function DiscordActivities({
               </div>
 
               {a.details && (
-                <div className="text-sm mt-1 truncate">{a.details}</div>
-              )}
-              {a.state && (
-                <div className="text-sm mt-1 truncate">{a.state}</div>
+                <span className="text-sm mt-1 truncate">
+                  {a.details} - {a.state}
+                </span>
               )}
 
               <div className="text-xs mt-2 flex flex-wrap gap-4">
                 {started && <div>Started: {formatDateUTC(started)}</div>}
-                {ended && <div>Ends: {formatDateUTC(ended)}</div>}
                 {started && <ElapsedTime start={started} end={ended} />}
               </div>
             </div>
