@@ -1,0 +1,48 @@
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+<channel>
+<title>
+<![CDATA[ numekudiさんのフィード ]]>
+</title>
+<description>
+<![CDATA[ Zennのnumekudiさん（@numekudi）のRSSフィードです ]]>
+</description>
+<link>https://zenn.dev/numekudi</link>
+<image>
+<url>https://storage.googleapis.com/zenn-user-upload/avatar/77bb569b17.jpeg</url>
+<title>numekudiさんのフィード</title>
+<link>https://zenn.dev/numekudi</link>
+</image>
+<generator>zenn.dev</generator>
+<lastBuildDate>Tue, 03 Feb 2026 11:48:32 GMT</lastBuildDate>
+<atom:link href="https://zenn.dev/numekudi/feed" rel="self" type="application/rss+xml"/>
+<language>
+<![CDATA[ ja ]]>
+</language>
+<item>
+<title>
+<![CDATA[ 🌈📊 フィードバック募集中　AIとつくるティアリスト ]]>
+</title>
+<description>
+<![CDATA[ ! 絶賛フィードバックを募集中です！ 例えば、最強プログラミング言語ティアリストのような、荒れそうな話題でも耐えられるのかなど、色々反応を見たいと考えています。 既存のティアリストをコピーする機能もあるのですぐに使い始めることができます。 TierSpectrumは、ティアリストを「説明できる意思決定」に変える、 AIエージェント付き共同編集ツールです。 https://youtu.be/VZno8OhBEQw https://tierspectrum.com 背景 ティアリストは対戦ゲームをプレイするユーザーであれば誰もが一度は目にしたことのある表現でしょう。 キャラクターや武... ]]>
+</description>
+<link>https://zenn.dev/numekudi/articles/a6b9ba37fb01f8</link>
+<guid isPermaLink="true">https://zenn.dev/numekudi/articles/a6b9ba37fb01f8</guid>
+<pubDate>Sat, 24 Jan 2026 12:45:36 GMT</pubDate>
+<enclosure url="https://res.cloudinary.com/zenn/image/upload/s--GuJHOhab--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:%2520%2520%2520%25E3%2583%2595%25E3%2582%25A3%25E3%2583%25BC%25E3%2583%2589%25E3%2583%2590%25E3%2583%2583%25E3%2582%25AF%25E5%258B%259F%25E9%259B%2586%25E4%25B8%25AD%25E3%2580%2580AI%25E3%2581%25A8%25E3%2581%25A4%25E3%2581%258F%25E3%2582%258B%25E3%2583%2586%25E3%2582%25A3%25E3%2582%25A2%25E3%2583%25AA%25E3%2582%25B9%25E3%2583%2588%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_37:numekudi%2Cx_203%2Cy_121/g_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL3plbm4tdXNlci11cGxvYWQvYXZhdGFyLzc3YmI1NjliMTcuanBlZw==%2Cr_max%2Cw_90%2Cx_87%2Cy_95/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT" length="0" type="false"/>
+<dc:creator>numekudi</dc:creator>
+</item>
+<item>
+<title>
+<![CDATA[ AIと心療内科シミュレーション！「うまく伝えられない」を解消する一人用タイムライン型体調メモ 第2回 AI Agent Hackathon ]]>
+</title>
+<description>
+<![CDATA[ はじめに うつ病は、生涯で約 15 人に 1 人が経験すると言われるほど、誰にとっても身近な病気です。新型コロナ流行後の 2020 年には 17.3%もの人がうつ状態にあるとされ、大きな問題となっています。その治療において、定期的な通院と医師とのコミュニケーションは非常に重要になります。 (出典参考: https://toyokeizai.net/articles/-/460203 ) しかし、多くの場合、2 回目以降の受診での診察時間は原則 5 分未満です。その短い時間の中で自身の体調の変化や心の動きを正確に、そして具体的に伝えることは容易ではありません。特に、前回の診察からの期間... ]]>
+</description>
+<link>https://zenn.dev/numekudi/articles/29e22e8806b0c5</link>
+<guid isPermaLink="true">https://zenn.dev/numekudi/articles/29e22e8806b0c5</guid>
+<pubDate>Sat, 28 Jun 2025 06:11:47 GMT</pubDate>
+<enclosure url="https://res.cloudinary.com/zenn/image/upload/s--w_tWHsdL--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:AI%25E3%2581%25A8%25E5%25BF%2583%25E7%2599%2582%25E5%2586%2585%25E7%25A7%2591%25E3%2582%25B7%25E3%2583%259F%25E3%2583%25A5%25E3%2583%25AC%25E3%2583%25BC%25E3%2582%25B7%25E3%2583%25A7%25E3%2583%25B3%25EF%25BC%2581%25E3%2580%258C%25E3%2581%2586%25E3%2581%25BE%25E3%2581%258F%25E4%25BC%259D%25E3%2581%2588%25E3%2582%2589%25E3%2582%258C%25E3%2581%25AA%25E3%2581%2584%25E3%2580%258D%25E3%2582%2592%25E8%25A7%25A3%25E6%25B6%2588%25E3%2581%2599%25E3%2582%258B%25E4%25B8%2580%25E4%25BA%25BA%25E7%2594%25A8%25E3%2582%25BF%25E3%2582%25A4%25E3%2583%25A0%25E3%2583%25A9%25E3%2582%25A4%25E3%2583%25B3%25E5%259E%258B%25E4%25BD%2593%25E8%25AA%25BF%25E3%2583%25A1%25E3%2583%25A2%2520%25E7%25AC%25AC2%25E5%259B%259E%2520AI%2520Age...%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_37:numekudi%2Cx_203%2Cy_121/g_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL3plbm4tdXNlci11cGxvYWQvYXZhdGFyLzc3YmI1NjliMTcuanBlZw==%2Cr_max%2Cw_90%2Cx_87%2Cy_95/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT" length="0" type="false"/>
+<dc:creator>numekudi</dc:creator>
+</item>
+</channel>
+</rss>
