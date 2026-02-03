@@ -21,19 +21,6 @@ export const loader = ({ request }: Route.LoaderArgs) => {
   return { colorScheme };
 };
 
-export function ClarityScript() {
-  const script = useMemo(
-    () => `
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "v06eq1skd2");
-    `,
-    [],
-  );
-  return <script dangerouslySetInnerHTML={{ __html: script }} />;
-}
 export function ColorSchemeScript() {
   const schemeData = useRouteLoaderData<typeof loader>("root");
   const colorScheme = schemeData?.colorScheme || "system";
@@ -88,7 +75,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
     >
       <head>
         <ColorSchemeScript />
-        <ClarityScript />
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />

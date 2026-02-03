@@ -1,7 +1,8 @@
 import type { Route } from "./+types/home";
 import { Welcome } from "../features/welcome/welcome";
 import { Outlet } from "react-router";
-import type { GitHubContributions, GitHubGraphQLResponse, QiitaArticle } from "../types";
+import type { GitHubContributions, GitHubGraphQLResponse, QiitaArticle, ZennArticle } from "../types";
+import Parser from 'rss-parser';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -94,43 +95,60 @@ async function fetchQiitaArticles(): Promise<QiitaArticle[]> {
   }
 
   const feedText = await response.text();
+  const parser = new Parser();
+  
+  try {
+    const feed = await parser.parseString(feedText);
+    
+    return feed.items?.slice(0, 5).map((item, index) => ({
+      title: item.title || `Article ${index + 1}`,
+      link: item.link || "#",
+      published: item.isoDate || item.pubDate || "",
+      id: item.guid || `qiita-article-${index}`,
+    })) || [];
+  } catch (error) {
+    throw new Error(`Failed to parse Qiita RSS: ${error}`);
+  }
+}
 
-  // Parse Atom feed manually
-  const entryRegex = /<entry>(.*?)<\/entry>/gs;
-  const titleRegex = /<title>(.*?)<\/title>/s;
-  const linkRegex = /<link rel="alternate"[^>]*href="([^"]*)"[^>]*\/>/;
-  const publishedRegex = /<published>(.*?)<\/published>/;
-  const idRegex = /<id>(.*?)<\/id>/;
+async function fetchZennArticles(): Promise<ZennArticle[]> {
+  const response = await fetch("https://zenn.dev/numekudi/feed");
 
-  const entries = feedText.match(entryRegex) || [];
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}: ${await response.text()}`);
+  }
 
-  return entries.slice(0, 5).map((entry, index) => {
-    const titleMatch = entry.match(titleRegex);
-    const linkMatch = entry.match(linkRegex);
-    const publishedMatch = entry.match(publishedRegex);
-    const idMatch = entry.match(idRegex);
-
-    return {
-      title: titleMatch?.[1] || `Article ${index + 1}`,
-      link: linkMatch?.[1] || "#",
-      published: publishedMatch?.[1] || "",
-      id: idMatch?.[1] || `article-${index}`,
-    };
-  });
+  const feedText = await response.text();
+  const parser = new Parser();
+  
+  try {
+    const feed = await parser.parseString(feedText);
+    
+    return feed.items?.slice(0, 5).map((item, index) => ({
+      title: item.title || `Article ${index + 1}`,
+      link: item.link || "#",
+      published: item.isoDate || item.pubDate || "",
+      id: item.guid || `zenn-article-${index}`,
+      description: item.contentSnippet?.substring(0, 150) + "..." || "",
+    })) || [];
+  } catch (error) {
+    throw new Error(`Failed to parse Zenn RSS: ${error}`);
+  }
 }
 
 export async function loader({ context }: Route.LoaderArgs) {
   const githubAccessToken = context.cloudflare.env.GITHUB_ACCESS_TOKEN;
   const kv = context.cloudflare.env.API_CACHE;
 
-  // Fetch GitHub and Qiita data with caching
-  const [githubResult, qiitaResult] = await Promise.allSettled([
+  // Fetch GitHub, Qiita, and Zenn data with caching
+  const [githubResult, qiitaResult, zennResult] = await Promise.allSettled([
     githubAccessToken
       ? getCachedData(kv, "github-contributions", () =>
           fetchGithubContributions(githubAccessToken),
         )
       : Promise.reject(new Error("No GitHub access token found")),
     getCachedData(kv, "qiita-articles", fetchQiitaArticles),
+    getCachedData(kv, "zenn-articles", fetchZennArticles),
   ]);
 
   const githubContributions =
@@ -147,11 +165,20 @@ export async function loader({ context }: Route.LoaderArgs) {
       ? `Fetch error: ${qiitaResult.reason}`
       : undefined;
 
+  const zennArticles =
+    zennResult.status === "fulfilled" ? zennResult.value : [];
+  const zennError =
+    zennResult.status === "rejected"
+      ? `Fetch error: ${zennResult.reason}`
+      : undefined;
+
   return {
     githubContributions,
     githubError,
     qiitaArticles,
     qiitaError,
+    zennArticles,
+    zennError,
   };
 }
 
@@ -162,6 +189,8 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       githubError={loaderData.githubError}
       qiitaArticles={loaderData.qiitaArticles}
       qiitaError={loaderData.qiitaError}
+      zennArticles={loaderData.zennArticles}
+      zennError={loaderData.zennError}
     >
       <Outlet />
     </Welcome>
