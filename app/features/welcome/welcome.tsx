@@ -8,7 +8,11 @@ import ZennBadge from "../zenn/zennBadge";
 import ZennArticles from "../zenn/zennArticles";
 import Career from "./career";
 import { type ReactNode } from "react";
-import type { GitHubContributions, QiitaArticle, ZennArticle } from "../../types";
+import type {
+  GitHubContributions,
+  QiitaArticle,
+  ZennArticle,
+} from "../../types";
 
 export function Welcome({
   githubContributions,
@@ -17,6 +21,7 @@ export function Welcome({
   qiitaError,
   zennArticles,
   zennError,
+  zennAvatarUrl,
   children,
 }: {
   githubContributions: GitHubContributions | null;
@@ -25,12 +30,15 @@ export function Welcome({
   qiitaError?: string;
   zennArticles: ZennArticle[];
   zennError?: string;
+  zennAvatarUrl?: string;
   children?: ReactNode;
 }) {
   const githubAvatarUrl = `https://github.com/numekudi.png`;
   const qiitaAvatarUrl =
     "https://cdn.primitive-ojisan.com/about/qiita_icon.webp";
-  const zennAvatarUrl = "https://storage.googleapis.com/zenn-user-upload/avatar/77bb569b17.jpeg";
+  const defaultZennAvatarUrl =
+    "https://storage.googleapis.com/zenn-user-upload/avatar/77bb569b17.jpeg";
+  const zennBadgeAvatarUrl = zennAvatarUrl ?? defaultZennAvatarUrl;
   return (
     <main className="flex flex-col">
       <div className="relative">
@@ -58,7 +66,7 @@ export function Welcome({
           <QiitaArticles articles={qiitaArticles} qiitaError={qiitaError} />
         </div>
         <div>
-          <ZennBadge avatarUrl={zennAvatarUrl} />
+          <ZennBadge avatarUrl={zennBadgeAvatarUrl} />
           <ZennArticles articles={zennArticles} zennError={zennError} />
         </div>
         <Career />

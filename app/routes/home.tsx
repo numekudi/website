@@ -1,8 +1,13 @@
 import type { Route } from "./+types/home";
 import { Welcome } from "../features/welcome/welcome";
 import { Outlet } from "react-router";
-import type { GitHubContributions, GitHubGraphQLResponse, QiitaArticle, ZennArticle } from "../types";
-import Parser from 'rss-parser';
+import type {
+  GitHubContributions,
+  GitHubGraphQLResponse,
+  QiitaArticle,
+  ZennFeed,
+} from "../types";
+import Parser from "rss-parser";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -39,7 +44,9 @@ async function getCachedData<T>(
   return freshData;
 }
 
-async function fetchGithubContributions(githubAccessToken: string): Promise<GitHubContributions> {
+async function fetchGithubContributions(
+  githubAccessToken: string,
+): Promise<GitHubContributions> {
   const query = `
     query {
       viewer {
@@ -78,8 +85,9 @@ async function fetchGithubContributions(githubAccessToken: string): Promise<GitH
     throw new Error(`GraphQL errors: ${JSON.stringify(data.errors)}`);
   }
 
-  const contributionCalendar = data.data?.viewer?.contributionsCollection?.contributionCalendar;
-  
+  const contributionCalendar =
+    data.data?.viewer?.contributionsCollection?.contributionCalendar;
+
   if (!contributionCalendar) {
     throw new Error("No contribution calendar data found in response");
   }
@@ -96,22 +104,24 @@ async function fetchQiitaArticles(): Promise<QiitaArticle[]> {
 
   const feedText = await response.text();
   const parser = new Parser();
-  
+
   try {
     const feed = await parser.parseString(feedText);
-    
-    return feed.items?.slice(0, 5).map((item, index) => ({
-      title: item.title || `Article ${index + 1}`,
-      link: item.link || "#",
-      published: item.isoDate || item.pubDate || "",
-      id: item.guid || `qiita-article-${index}`,
-    })) || [];
+
+    return (
+      feed.items?.slice(0, 5).map((item, index) => ({
+        title: item.title || `Article ${index + 1}`,
+        link: item.link || "#",
+        published: item.isoDate || item.pubDate || "",
+        id: item.guid || `qiita-article-${index}`,
+      })) || []
+    );
   } catch (error) {
     throw new Error(`Failed to parse Qiita RSS: ${error}`);
   }
 }
 
-async function fetchZennArticles(): Promise<ZennArticle[]> {
+async function fetchZennFeed(): Promise<ZennFeed> {
   const response = await fetch("https://zenn.dev/numekudi/feed");
 
   if (!response.ok) {
@@ -120,17 +130,26 @@ async function fetchZennArticles(): Promise<ZennArticle[]> {
 
   const feedText = await response.text();
   const parser = new Parser();
-  
+
   try {
     const feed = await parser.parseString(feedText);
-    
-    return feed.items?.slice(0, 5).map((item, index) => ({
-      title: item.title || `Article ${index + 1}`,
-      link: item.link || "#",
-      published: item.isoDate || item.pubDate || "",
-      id: item.guid || `zenn-article-${index}`,
-      description: item.contentSnippet?.substring(0, 150) + "..." || "",
-    })) || [];
+    const avatarUrl = feed.image?.url;
+
+    const articles =
+      feed.items?.slice(0, 5).map((item, index) => ({
+        title: item.title || `Article ${index + 1}`,
+        link: item.link || "#",
+        published: item.isoDate || item.pubDate || "",
+        id: item.guid || `zenn-article-${index}`,
+        description: item.contentSnippet
+          ? `${item.contentSnippet.substring(0, 150)}...`
+          : "",
+      })) || [];
+
+    return {
+      avatarUrl,
+      articles,
+    };
   } catch (error) {
     throw new Error(`Failed to parse Zenn RSS: ${error}`);
   }
@@ -148,9 +167,8 @@ export async function loader({ context }: Route.LoaderArgs) {
         )
       : Promise.reject(new Error("No GitHub access token found")),
     getCachedData(kv, "qiita-articles", fetchQiitaArticles),
-    getCachedData(kv, "zenn-articles", fetchZennArticles),
+    getCachedData(kv, "zenn-feed", fetchZennFeed),
   ]);
-
   const githubContributions =
     githubResult.status === "fulfilled" ? githubResult.value : null;
   const githubError =
@@ -165,12 +183,14 @@ export async function loader({ context }: Route.LoaderArgs) {
       ? `Fetch error: ${qiitaResult.reason}`
       : undefined;
 
-  const zennArticles =
-    zennResult.status === "fulfilled" ? zennResult.value : [];
+  const zennFeed = zennResult.status === "fulfilled" ? zennResult.value : null;
   const zennError =
     zennResult.status === "rejected"
       ? `Fetch error: ${zennResult.reason}`
       : undefined;
+
+  const zennArticles = zennFeed?.articles ?? [];
+  const zennAvatarUrl = zennFeed?.avatarUrl;
 
   return {
     githubContributions,
@@ -179,18 +199,30 @@ export async function loader({ context }: Route.LoaderArgs) {
     qiitaError,
     zennArticles,
     zennError,
+    zennAvatarUrl,
   };
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
+  const {
+    githubContributions,
+    githubError,
+    qiitaArticles,
+    qiitaError,
+    zennArticles,
+    zennError,
+    zennAvatarUrl,
+  } = loaderData;
+
   return (
     <Welcome
-      githubContributions={loaderData.githubContributions}
-      githubError={loaderData.githubError}
-      qiitaArticles={loaderData.qiitaArticles}
-      qiitaError={loaderData.qiitaError}
-      zennArticles={loaderData.zennArticles}
-      zennError={loaderData.zennError}
+      githubContributions={githubContributions}
+      githubError={githubError}
+      qiitaArticles={qiitaArticles}
+      qiitaError={qiitaError}
+      zennArticles={zennArticles}
+      zennError={zennError}
+      zennAvatarUrl={zennAvatarUrl}
     >
       <Outlet />
     </Welcome>

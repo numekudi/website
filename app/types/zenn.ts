@@ -6,3 +6,8 @@ export interface ZennArticle {
   id: string;
   description?: string;
 }
+
+export interface ZennFeed {
+  avatarUrl?: string;
+  articles: ZennArticle[];
+}
